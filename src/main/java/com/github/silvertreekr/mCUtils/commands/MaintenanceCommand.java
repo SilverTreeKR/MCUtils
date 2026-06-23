@@ -15,7 +15,6 @@ public class MaintenanceCommand extends BukkitCommand {
         MaintenanceManager manager = MCUtils.getMaintenanceManager();
         // /점검 상태
         if (args.length == 0) {
-
             // "/점검"
             if (manager.getStatus()) {
                 manager.setStatus(false);
@@ -24,7 +23,7 @@ public class MaintenanceCommand extends BukkitCommand {
                 manager.setStatus(true);
                 commandSender.sendRichMessage("<bold>[ 점검 모드 ] <reset><green>활성화 <reset>되었습니다.");
             }
-
+            manager.saveConfig(MCUtils.getInstance());
         } else {
             // "/점검 ~" -> 올바르지 않은 인자
             if (!args[0].equals("상태")) {

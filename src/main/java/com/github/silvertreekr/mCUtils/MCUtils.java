@@ -12,6 +12,11 @@ public final class MCUtils extends JavaPlugin {
     private static MaintenanceManager maintenanceManager = new MaintenanceManager();
     public static MaintenanceManager getMaintenanceManager() { return maintenanceManager; }
 
+    private static MCUtils instance;
+    public static MCUtils getInstance() {
+        return instance;
+    }
+
     @Override
     public void onEnable() {
         new PreventVillagerTradeListener(this);
@@ -20,14 +25,18 @@ public final class MCUtils extends JavaPlugin {
         new PreventLoginWhileMaintenanceListner(this);
         new MaintenanceCommand(this);
 
+        saveDefaultConfig();
         reloadConfig();
         maintenanceManager.readConfig(this);
-
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        maintenanceManager.saveConfig(this);
     }
 
+    @Override
+    public void onLoad() {
+        instance = this;
+    }
 }

@@ -14,7 +14,12 @@ public class MaintenanceManager {
     }
 
     public void readConfig(JavaPlugin plugin) {
-        isEnabled = plugin.getConfig().getBoolean("maintenace");
+        isEnabled = plugin.getConfig().getBoolean("maintenance");
+    }
+
+    public void saveConfig(JavaPlugin plugin) {
+        plugin.getConfig().set("maintenance", isEnabled);
+        plugin.saveConfig();
     }
 }
 
