@@ -1,5 +1,6 @@
 package com.github.silvertreekr.mCUtils;
 
+import com.github.silvertreekr.mCUtils.commands.MaintenanceCommand;
 import com.github.silvertreekr.mCUtils.events.PreventCreeperExplodeListener;
 import com.github.silvertreekr.mCUtils.events.PreventEnchantingTableListener;
 import com.github.silvertreekr.mCUtils.events.PreventVillagerTradeListener;
@@ -15,8 +16,10 @@ public final class MCUtils extends JavaPlugin {
         new PreventVillagerTradeListener(this);
         new PreventEnchantingTableListener(this);
         new PreventCreeperExplodeListener(this);
+        new MaintenanceCommand(this);
         reloadConfig();
         maintenanceManager.readConfig(this);
+
     }
 
     @Override
