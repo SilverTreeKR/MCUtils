@@ -47,6 +47,7 @@ public class MaintenanceCommand extends BukkitCommand {
 
     public MaintenanceCommand(JavaPlugin plugin) {
         super("점검");
+        setPermission("op");
         plugin.getServer().getCommandMap().register("mcutils", this);
     }
 }
