@@ -8,16 +8,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class PreventVillagerTradeListener implements Listener {
     @EventHandler
-    public void onPlayerInteractVilager(PlayerInteractEntityEvent event) {
+    public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
         if (event.getRightClicked() instanceof Villager) {
             event.setCancelled(true);
         }
     }
-
     public PreventVillagerTradeListener(JavaPlugin plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 }
 
-// 주민 거래 막아야함
-// -> PlayerInteractEntityEvent
