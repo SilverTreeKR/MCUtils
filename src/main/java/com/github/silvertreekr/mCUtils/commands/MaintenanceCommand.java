@@ -27,7 +27,7 @@ public class MaintenanceCommand extends BukkitCommand {
 
         } else {
             // "/점검 ~" -> 올바르지 않은 인자
-            if (args[0] != "상태") {
+            if (!args[0].equals("상태")) {
                 commandSender.sendRichMessage("<bold>[ 점검 모드 ] <reset><red>올바르지 않은 사용법입니다.");
                 commandSender.sendRichMessage("<bold>[ 점검 모드 ] <reset><red>올바른 사용법 : /점검 상태");
 
