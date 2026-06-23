@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class PreventLoginWhileMaintenanceListner implements Listener {
     @EventHandler
     public void onAysncPlayerPreLogin(AsyncPlayerPreLoginEvent event) {
-        if (Bukkit.getOperators().stream().anyMatch(offlinePlayer -> offlinePlayer.getUniqueId() == event.getUniqueId())) {
+        if (Bukkit.getOperators().stream().anyMatch(offlinePlayer -> offlinePlayer.getUniqueId().equals(event.getUniqueId()))) {
             return;
         }
         MaintenanceManager manager = MCUtils.getMaintenanceManager();
