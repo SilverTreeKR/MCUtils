@@ -1,13 +1,13 @@
 package com.github.silvertreekr.mCUtils;
 
+import com.github.silvertreekr.mCUtils.events.PreventVillagerTradeListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class MCUtils extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-
+        new PreventVillagerTradeListener(this);
     }
 
     @Override
@@ -16,8 +16,6 @@ public final class MCUtils extends JavaPlugin {
     }
 }
 
-// 주민 거래 막아야함
-// -> PlayerInteractEntityEvent
 
 // 인첸트 테이블 막아야함
 // -> PlayerInteractEvent
