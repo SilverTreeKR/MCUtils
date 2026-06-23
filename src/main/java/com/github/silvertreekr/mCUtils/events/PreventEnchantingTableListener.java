@@ -15,6 +15,9 @@ public class PreventEnchantingTableListener implements Listener {
         if (event.getClickedBlock().getType() != Material.ENCHANTING_TABLE) {
             return;
         }
+        if (!event.getAction().isRightClick()) {
+            return;
+        }
         event.setCancelled(true);
     }
     public PreventEnchantingTableListener(JavaPlugin plugin) {
