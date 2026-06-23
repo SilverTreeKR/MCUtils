@@ -31,13 +31,3 @@ public final class MCUtils extends JavaPlugin {
     }
 
 }
-
-
-// 인첸트 테이블 막아야함
-// -> PlayerInteractEvent
-
-// 접속 막는거 (콘솔 명령어 토글 식/config.yml 읽어서 처리.)
-// -> AsyncPlayerPreLoginEvnet
-
-// 크리퍼 폭발 방지
-// -> EntityExplodeEvent
