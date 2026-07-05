@@ -1,11 +1,8 @@
 package com.github.silvertreekr.mcutils;
 
 import com.github.silvertreekr.mcutils.commands.MaintenanceCommand;
-import com.github.silvertreekr.mcutils.events.PreventCreeperExplodeListener;
-import com.github.silvertreekr.mcutils.events.PreventEnchantingTableListener;
-import com.github.silvertreekr.mcutils.events.PreventLoginWhileMaintenanceListner;
-import com.github.silvertreekr.mcutils.events.PreventVillagerTradeListener;
 import com.github.silvertreekr.mcutils.dao.CouponDAO;
+import com.github.silvertreekr.mcutils.dao.CouponManager;
 import com.github.silvertreekr.mcutils.database.MysqlDatabase;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -25,6 +22,9 @@ public final class MCUtils extends JavaPlugin {
     }
     public @NotNull MysqlDatabase getMysqlDatabase() {
         return mysqlDatabase;
+    }
+    public @NotNull CouponManager getCouponManager() {
+        return couponManager;
     }
 
     @Override
@@ -47,6 +47,13 @@ public final class MCUtils extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
         }
 
+        // Initialize CouponDAO & CouponManager
+        CouponDAO couponDAO = new CouponDAO(mysqlDatabase);
+        couponDAO.initialize();
+
+        couponManager = new CouponManager(couponDAO);
+
+        // Register EventListener
         new PreventVillagerTradeListener(this);
         new PreventEnchantingTableListener(this);
         new PreventCreeperExplodeListener(this);
