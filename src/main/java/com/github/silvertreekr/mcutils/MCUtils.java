@@ -5,7 +5,11 @@ import com.github.silvertreekr.mcutils.events.PreventCreeperExplodeListener;
 import com.github.silvertreekr.mcutils.events.PreventEnchantingTableListener;
 import com.github.silvertreekr.mcutils.events.PreventLoginWhileMaintenanceListner;
 import com.github.silvertreekr.mcutils.events.PreventVillagerTradeListener;
+import com.github.silvertreekr.mcutils.dao.CouponDAO;
+import com.github.silvertreekr.mcutils.database.MysqlDatabase;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
+
 
 public final class MCUtils extends JavaPlugin {
     private static MCUtils instance;
@@ -62,5 +66,8 @@ public final class MCUtils extends JavaPlugin {
     @Override
     public void onLoad() {
         instance = this;
+        if (mysqlDatabase != null) {
+            mysqlDatabase.shutdown();
+        }
     }
 }
