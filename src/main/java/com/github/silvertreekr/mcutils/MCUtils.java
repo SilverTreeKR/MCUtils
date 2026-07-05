@@ -4,9 +4,13 @@ import com.github.silvertreekr.mcutils.commands.MaintenanceCommand;
 import com.github.silvertreekr.mcutils.dao.CouponDAO;
 import com.github.silvertreekr.mcutils.dao.CouponManager;
 import com.github.silvertreekr.mcutils.database.MysqlDatabase;
+import com.github.silvertreekr.mcutils.events.*;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.UUID;
 
 public final class MCUtils extends JavaPlugin {
     private static MCUtils instance;
@@ -58,6 +62,10 @@ public final class MCUtils extends JavaPlugin {
         new PreventEnchantingTableListener(this);
         new PreventCreeperExplodeListener(this);
         new PreventLoginWhileMaintenanceListner(this);
+        new PlayerQuitEventListener(this);
+        new PlayerJoinEventListener(this);
+
+        // Initialize Command
         new MaintenanceCommand(this);
 
         saveDefaultConfig();
@@ -68,11 +76,10 @@ public final class MCUtils extends JavaPlugin {
     @Override
     public void onDisable() {
         maintenanceManager.saveConfig(this);
-    }
-
-    @Override
-    public void onLoad() {
-        instance = this;
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            UUID uuid = player.getUniqueId();
+            couponManager.savePlayerCouponData(uuid).join();
+        }
         if (mysqlDatabase != null) {
             mysqlDatabase.shutdown();
         }
