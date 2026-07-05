@@ -1,5 +1,6 @@
 package com.github.silvertreekr.mcutils;
 
+import com.github.silvertreekr.mcutils.commands.CouponCommand;
 import com.github.silvertreekr.mcutils.commands.MaintenanceCommand;
 import com.github.silvertreekr.mcutils.dao.CouponDAO;
 import com.github.silvertreekr.mcutils.dao.CouponManager;
@@ -67,10 +68,8 @@ public final class MCUtils extends JavaPlugin {
 
         // Initialize Command
         new MaintenanceCommand(this);
+        new CouponCommand(this);
 
-        saveDefaultConfig();
-        reloadConfig();
-        maintenanceManager.readConfig(this);
     }
 
     @Override
