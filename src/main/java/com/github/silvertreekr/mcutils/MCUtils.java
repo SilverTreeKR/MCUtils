@@ -1,10 +1,10 @@
-package com.github.silvertreekr.mCUtils;
+package com.github.silvertreekr.mcutils;
 
-import com.github.silvertreekr.mCUtils.commands.MaintenanceCommand;
-import com.github.silvertreekr.mCUtils.events.PreventCreeperExplodeListener;
-import com.github.silvertreekr.mCUtils.events.PreventEnchantingTableListener;
-import com.github.silvertreekr.mCUtils.events.PreventLoginWhileMaintenanceListner;
-import com.github.silvertreekr.mCUtils.events.PreventVillagerTradeListener;
+import com.github.silvertreekr.mcutils.commands.MaintenanceCommand;
+import com.github.silvertreekr.mcutils.events.PreventCreeperExplodeListener;
+import com.github.silvertreekr.mcutils.events.PreventEnchantingTableListener;
+import com.github.silvertreekr.mcutils.events.PreventLoginWhileMaintenanceListner;
+import com.github.silvertreekr.mcutils.events.PreventVillagerTradeListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class MCUtils extends JavaPlugin {

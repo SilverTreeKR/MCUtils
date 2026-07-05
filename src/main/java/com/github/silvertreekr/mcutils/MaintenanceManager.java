@@ -1,4 +1,4 @@
-package com.github.silvertreekr.mCUtils;
+package com.github.silvertreekr.mcutils;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

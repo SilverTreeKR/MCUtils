@@ -1,5 +1,5 @@
 name: MCUtils
 version: '1.0-SNAPSHOT'
-main: com.github.silvertreekr.mCUtils.MCUtils
+main: com.github.silvertreekr.mcutils.MCUtils
 api-version: '1.21'
 authors: [ SilverTreeKR ]

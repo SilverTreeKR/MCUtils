@@ -1,4 +1,4 @@
-package com.github.silvertreekr.mCUtils.events;
+package com.github.silvertreekr.mcutils.events;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;

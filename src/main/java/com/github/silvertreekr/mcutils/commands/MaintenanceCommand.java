@@ -1,9 +1,7 @@
-package com.github.silvertreekr.mCUtils.commands;
+package com.github.silvertreekr.mcutils.commands;
 
-import com.github.silvertreekr.mCUtils.MCUtils;
-import com.github.silvertreekr.mCUtils.MaintenanceManager;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
+import com.github.silvertreekr.mcutils.MCUtils;
+import com.github.silvertreekr.mcutils.MaintenanceManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.plugin.java.JavaPlugin;
