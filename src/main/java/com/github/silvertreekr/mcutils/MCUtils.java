@@ -8,17 +8,41 @@ import com.github.silvertreekr.mcutils.events.PreventVillagerTradeListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class MCUtils extends JavaPlugin {
-
-    private static MaintenanceManager maintenanceManager = new MaintenanceManager();
-    public static MaintenanceManager getMaintenanceManager() { return maintenanceManager; }
-
     private static MCUtils instance;
-    public static MCUtils getInstance() {
+    private static MaintenanceManager maintenanceManager = new MaintenanceManager();
+    private MysqlDatabase mysqlDatabase;
+    private CouponManager couponManager;
+
+    public static @NotNull MCUtils getInstance() {
         return instance;
+    }
+    public static MaintenanceManager getMaintenanceManager() {
+        return maintenanceManager;
+    }
+    public @NotNull MysqlDatabase getMysqlDatabase() {
+        return mysqlDatabase;
     }
 
     @Override
     public void onEnable() {
+        instance = this;
+
+        // Initialize Default Config
+        saveDefaultConfig();
+        reloadConfig();
+
+        // Initialize the MaintenanceManager
+        maintenanceManager.readConfig(this);
+
+        // Initialize the MySQL Database
+        try {
+            mysqlDatabase = MysqlDatabase.initialize(this);
+
+        } catch (Exception e) {
+            getSLF4JLogger().error("Failed to initialize MySQL database", e);
+            getServer().getPluginManager().disablePlugin(this);
+        }
+
         new PreventVillagerTradeListener(this);
         new PreventEnchantingTableListener(this);
         new PreventCreeperExplodeListener(this);
