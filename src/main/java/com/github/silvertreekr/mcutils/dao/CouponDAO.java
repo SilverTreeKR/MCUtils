@@ -52,13 +52,15 @@ public class CouponDAO {
             }
         });
     }
-    public CompletableFuture<Void> setCoupon(UUID uuid, String coupon) {
+    public CompletableFuture<Void> setCoupon(UUID uuid, Set<String> coupons) {
         return database.runAsync(connection -> {
            String sql = "INSERT IGNORE INTO user_coupon(uuid, coupon) VALUES (?, ?);";
            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-               statement.setString(1, uuid.toString());
-               statement.setString(2, coupon);
-               statement.addBatch();
+               for (String couponID : coupons) {
+                   statement.setString(1, uuid.toString());
+                   statement.setString(2, couponID);
+                   statement.addBatch();
+               }
                statement.executeBatch();
            } catch (SQLException e) {
                throw new RuntimeException(e);
