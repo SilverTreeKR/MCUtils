@@ -25,6 +25,10 @@ public class CouponManager {
     }
 
     public CompletableFuture<Void> savePlayerCouponData(UUID uuid) {
+        Set<String> coupons = userCoupons.get(uuid);
+        if (coupons == null | coupons.isEmpty()) {
+            return CompletableFuture.completedFuture(null);
+        }
         return couponDAO.setCoupon(uuid, userCoupons.get(uuid));
     }
 
