@@ -75,6 +75,7 @@ public final class MCUtils extends JavaPlugin implements Listener {
         new PreventLoginWhileMaintenanceListner(this);
         new PlayerQuitEventListener(this);
         new PlayerJoinEventListener(this);
+        new UseCustomItemEventListener(this);
 
         // Initialize Command
         new MaintenanceCommand(this);
