@@ -2,7 +2,9 @@ package com.github.silvertreekr.mcutils.commands;
 
 import com.github.silvertreekr.mcutils.MCUtils;
 import com.github.silvertreekr.mcutils.dao.CouponManager;
+import com.github.silvertreekr.mcutils.utils.CustomItemBuilder;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
@@ -27,18 +29,14 @@ public class CouponCommand extends BukkitCommand {
 
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String @NotNull [] args) {
-        if (!(sender instanceof Player)) {
         if (!(sender instanceof Player player)) {
             return false;
         }
         if (args.length == 0) {
-            sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset>사용법: /쿠폰 [쿠폰ID]");
-            return true;
             sender.sendRichMessage("<bold>[ 쿠폰 ] <reset>사용법: /쿠폰 [쿠폰ID]");
             return false;
         }
         CouponManager couponManager = MCUtils.getInstance().getCouponManager();
-        UUID uuid = ((Player) sender).getUniqueId();
         UUID uuid = player.getUniqueId();
         var placeholder = Placeholder.parsed("coupon", args[0].toString());
 
@@ -49,25 +47,17 @@ public class CouponCommand extends BukkitCommand {
                 ZonedDateTime expiredDateKst = ZonedDateTime.of(2026, 7, 10, 0, 0, 0, 0, kstZone);
 
                 if (nowKst.isAfter(expiredDateKst)) {
-                    sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset><red>해당 쿠폰은 이미 만료되었습니다.");
-                    return true;
                     sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>해당 쿠폰은 이미 만료되었습니다.");
                     player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                     return false;
                 }
                 if (couponManager.isUsedCoupon(uuid, args[0])) {
-                    sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset><red>이미 사용한 쿠폰입니다.");
-                    return true;
                     sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>이미 사용한 쿠폰입니다.");
                     player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                     return false;
                 }
 
                 couponManager.useCoupon(uuid, args[0]);
-                ((Player) sender).give(createReallyOpenReward());
-                sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
-                sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset><aqua>오픈까지 기다려주셔서 감사합니다.");
-                sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset><aqua>즐거운 마인크래프트 되세요 !");
                 sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
                 player.give(createReallyOpenReward());
                 sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><aqua>오픈까지 기다려주셔서 감사합니다.");
@@ -75,8 +65,27 @@ public class CouponCommand extends BukkitCommand {
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
                 return true;
             }
+            // 아야님 전용 쿠폰 코드
+            case "7H4NK54Y4" -> {
+//                if (uuid.toString() != "66123349-3d00-4b75-a72a-836f1a6acf20") {
+//                    sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>오직 아야님만 입력할 수 있는 쿠폰입니다.");
+//                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
+//                    return false;
+//                }
+                if (couponManager.isUsedCoupon(uuid, args[0])) {
+                    sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>이미 사용한 쿠폰입니다.");
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
+                    return false;
+                }
+
+                sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
+                couponManager.useCoupon(uuid, args[0]);
+                patronDefaultReward(player);
+                player.give(CustomItemBuilder.createAyaPresentBox());
+
+                return true;
+            }
             default -> {
-                sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset><red>올바르지 않은 쿠폰 ID입니다.");
                 sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>올바르지 않은 쿠폰 ID입니다.");
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                 return false;
@@ -102,5 +111,14 @@ public class CouponCommand extends BukkitCommand {
                 ironPickaxe,
                 ironAxe
         );
+    }
+    private void patronDefaultReward(Player player) {
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/칭호 지급 " + player.getName() + " 13");
+        player.give(CustomItemBuilder.createPatronPresentBox());
+        player.sendRichMessage("<bold>[ 쿠폰 ] <reset><aqua>후원해주셔서 감사합니다.");
+        player.sendRichMessage("<bold>[ 쿠폰 ] <reset><yellow>아이템 상자를 사용하실 때 꼭 인벤토리를 비우신 후에 사용해주세요 !");
+        player.sendRichMessage("<bold>[ 쿠폰 ] <reset><yellow>인벤토리 공간 부족으로 인한 아이템 유실은 책임지지 않습니다.");
+        player.sendRichMessage("<bold>[ 쿠폰 ] <reset><yellow>아이템의 설명을 통해 지급될 아이템의 양을 확인하실 수 있습니다.");
+        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
     }
 }
