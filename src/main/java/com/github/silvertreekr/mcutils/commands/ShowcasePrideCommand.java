@@ -43,7 +43,7 @@ public class ShowcasePrideCommand extends BukkitCommand {
         Component itemNameComponent = baseName.hoverEvent(item);
 
         Bukkit.broadcast(MiniMessage.miniMessage().deserialize(
-                "<bold>[ 자랑 시스템 ] <reset><green><player><reset>님께서 <dark_purple>[<item>]<reset>을/를 자랑하고 싶어합니다 !",
+                "<bold>[ 자랑 시스템 ] <reset><green><player><reset>님께서 <light_purple>[<item>]<reset>을/를 자랑하고 싶어합니다 !",
                 Placeholder.component("player", Component.text(player.getName())),
                 Placeholder.component("item", itemNameComponent)
         ));
