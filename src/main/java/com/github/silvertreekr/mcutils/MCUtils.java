@@ -8,19 +8,22 @@ import com.github.silvertreekr.mcutils.dao.CouponDAO;
 import com.github.silvertreekr.mcutils.dao.CouponManager;
 import com.github.silvertreekr.mcutils.database.MysqlDatabase;
 import com.github.silvertreekr.mcutils.events.*;
+import com.github.silvertreekr.mcutils.manager.HeadDatabaseManager;
 import com.github.silvertreekr.mcutils.manager.MaintenanceManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-public final class MCUtils extends JavaPlugin {
+public final class MCUtils extends JavaPlugin implements Listener {
     private static MCUtils instance;
     private static MaintenanceManager maintenanceManager = new MaintenanceManager();
     private MysqlDatabase mysqlDatabase;
     private CouponManager couponManager;
+    private HeadDatabaseManager headDatabaseManager;
 
     public static @NotNull MCUtils getInstance() {
         return instance;
@@ -34,11 +37,15 @@ public final class MCUtils extends JavaPlugin {
     public @NotNull CouponManager getCouponManager() {
         return couponManager;
     }
+    public @NotNull HeadDatabaseManager getHDBManager() {
+        return headDatabaseManager;
+    }
 
     @Override
     public void onEnable() {
-        instance = this;
 
+        instance = this;
+        headDatabaseManager = new HeadDatabaseManager(this);
         // Initialize Default Config
         saveDefaultConfig();
         reloadConfig();
