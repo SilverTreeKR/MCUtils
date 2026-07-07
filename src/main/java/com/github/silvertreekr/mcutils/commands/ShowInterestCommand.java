@@ -29,8 +29,8 @@ public class ShowInterestCommand extends BukkitCommand {
         }
 
         if (player.getUniqueId().equals(manager.getCurrentShowerID())) {
-            player.sendRichMessage("<bold>[ 자랑 시스템 ] <red>자기 자신에게는 관심을 줄 수 없습니다 !");
-            player.sendRichMessage("<bold>[ 자랑 시스템 ] <red>그렇게나 관심이 받고 싶으셨나요...?");
+            player.sendRichMessage("<bold>[ 자랑 시스템 ] <reset><red>자기 자신에게는 관심을 줄 수 없습니다 !");
+            player.sendRichMessage("<bold>[ 자랑 시스템 ] <reset><red>그렇게나 관심이 받고 싶으셨나요...?");
             Bukkit.broadcast(MiniMessage.miniMessage().deserialize(
                     "<bold>[ 자랑 시스템 ] <reset><green><player><reset>님께서 본인에게 관심을 주려고 하셨습니다 !",
                     Placeholder.component("player", Component.text(player.getName()))
@@ -52,11 +52,11 @@ public class ShowInterestCommand extends BukkitCommand {
             return false;
         }
         sender.sendRichMessage(
-                "<bold>[ 자랑 시스템 ] <aqua><target><reset>님께 관심을 보였습니다 !",
+                "<bold>[ 자랑 시스템 ] <reset><aqua><target><reset>님께 관심을 보였습니다 !",
                 Placeholder.component("target", Component.text(target.getName()))
         );
         target.sendRichMessage(
-                "<bold>[ 자랑 시스템 ] <light_purple><player><reset>님이 당신의 아이템에 관심을 보였습니다 !",
+                "<bold>[ 자랑 시스템 ] <reset><light_purple><player><reset>님이 당신의 아이템에 관심을 보였습니다 !",
                 Placeholder.component("player", Component.text(sender.getName()))
         );
         target.sendRichMessage(
