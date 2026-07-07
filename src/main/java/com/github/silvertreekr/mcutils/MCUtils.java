@@ -6,6 +6,7 @@ import com.github.silvertreekr.mcutils.dao.CouponDAO;
 import com.github.silvertreekr.mcutils.dao.CouponManager;
 import com.github.silvertreekr.mcutils.database.MysqlDatabase;
 import com.github.silvertreekr.mcutils.events.*;
+import com.github.silvertreekr.mcutils.manager.MaintenanceManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;

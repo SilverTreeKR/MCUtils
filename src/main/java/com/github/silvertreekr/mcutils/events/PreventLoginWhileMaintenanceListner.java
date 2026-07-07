@@ -1,7 +1,7 @@
 package com.github.silvertreekr.mcutils.events;
 
 import com.github.silvertreekr.mcutils.MCUtils;
-import com.github.silvertreekr.mcutils.MaintenanceManager;
+import com.github.silvertreekr.mcutils.manager.MaintenanceManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
