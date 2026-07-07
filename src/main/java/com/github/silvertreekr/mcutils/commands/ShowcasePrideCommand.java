@@ -32,18 +32,12 @@ public class ShowcasePrideCommand extends BukkitCommand {
 
         PriderShowcaseManager.getInstance().startShowcase(player);
         ItemMeta itemMeta = item.getItemMeta();
-        Component baseName;
-
-        if (itemMeta.displayName() != null) {
-            baseName = itemMeta.displayName();
-        } else {
-            baseName = Component.translatable(item.getType().translationKey());
-        }
+        Component baseName = item.displayName();
 
         Component itemNameComponent = baseName.hoverEvent(item);
 
         Bukkit.broadcast(MiniMessage.miniMessage().deserialize(
-                "<bold>[ 자랑 시스템 ] <reset><green><player><reset>님께서 <light_purple>[<item>]<reset>을/를 자랑하고 싶어합니다 !",
+                "<bold>[ 자랑 시스템 ] <reset><green><player><reset>님께서 <item><reset>을/를 자랑하고 싶어합니다 !",
                 Placeholder.component("player", Component.text(player.getName())),
                 Placeholder.component("item", itemNameComponent)
         ));
