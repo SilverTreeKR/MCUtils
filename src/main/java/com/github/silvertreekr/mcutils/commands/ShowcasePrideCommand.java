@@ -35,7 +35,7 @@ public class ShowcasePrideCommand extends BukkitCommand {
         Component baseName;
 
         if (itemMeta.displayName() != null) {
-            baseName = item.displayName();
+            baseName = itemMeta.displayName();
         } else {
             baseName = Component.translatable(item.getType().translationKey());
         }
