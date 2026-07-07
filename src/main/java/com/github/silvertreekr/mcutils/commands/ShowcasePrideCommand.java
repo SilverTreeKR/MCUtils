@@ -30,7 +30,7 @@ public class ShowcasePrideCommand extends BukkitCommand {
             return false;
         }
 
-        PriderShowcaseManager.getInstance().startShowcase(player, item);
+        PriderShowcaseManager.getInstance().startShowcase(player);
         ItemMeta itemMeta = item.getItemMeta();
         Component baseName;
 

@@ -23,7 +23,7 @@ public class PriderShowcaseManager {
         return instance;
     }
 
-    public void startShowcase(Player player, ItemStack item) {
+    public void startShowcase(Player player) {
         this.currentShowerID = player.getUniqueId();
         this.currentItem = item;
         this.interestedPlayers.clear();
