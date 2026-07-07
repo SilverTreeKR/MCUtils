@@ -1,7 +1,6 @@
 package com.github.silvertreekr.mcutils.manager;
 
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +10,6 @@ public class PriderShowcaseManager {
     private static PriderShowcaseManager instance;
 
     private UUID currentShowerID;
-    private ItemStack currentItem;
     private final Set<UUID> interestedPlayers = new HashSet<>();
 
     private PriderShowcaseManager() {}
@@ -25,7 +23,6 @@ public class PriderShowcaseManager {
 
     public void startShowcase(Player player) {
         this.currentShowerID = player.getUniqueId();
-        this.currentItem = item;
         this.interestedPlayers.clear();
     }
 
@@ -42,5 +39,9 @@ public class PriderShowcaseManager {
             return false;
         }
         return interestedPlayers.add(player.getUniqueId());
+    }
+
+    public int getInterestCount() {
+        return interestedPlayers.size();
     }
 }

@@ -59,6 +59,10 @@ public class ShowInterestCommand extends BukkitCommand {
                 "<bold>[ 자랑 시스템 ] <light_purple><player><reset>님이 당신의 아이템에 관심을 보였습니다 !",
                 Placeholder.component("player", Component.text(sender.getName()))
         );
+        target.sendRichMessage(
+                "<bold>[ 자랑 시스템 ] <reset>지금까지 받은 관심 수: <count>",
+                Placeholder.component("count", Component.text(manager.getInterestCount()))
+        );
         return true;
     }
 }
