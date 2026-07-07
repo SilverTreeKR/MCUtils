@@ -50,11 +50,13 @@ public class CouponCommand extends BukkitCommand {
                 if (nowKst.isAfter(expiredDateKst)) {
                     sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset><red>해당 쿠폰은 이미 만료되었습니다.");
                     return true;
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                     return false;
                 }
                 if (couponManager.isUsedCoupon(uuid, args[0])) {
                     sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset><red>이미 사용한 쿠폰입니다.");
                     return true;
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                     return false;
                 }
 
@@ -63,10 +65,12 @@ public class CouponCommand extends BukkitCommand {
                 sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
                 sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset><aqua>오픈까지 기다려주셔서 감사합니다.");
                 sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset><aqua>즐거운 마인크래프트 되세요 !");
+                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
                 return true;
             }
             default -> {
                 sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset><red>올바르지 않은 쿠폰 ID입니다.");
+                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                 return false;
             }
         }
