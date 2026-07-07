@@ -4,6 +4,7 @@ import com.github.silvertreekr.mcutils.MCUtils;
 import com.github.silvertreekr.mcutils.dao.CouponManager;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.enchantments.Enchantment;
@@ -27,14 +28,17 @@ public class CouponCommand extends BukkitCommand {
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String @NotNull [] args) {
         if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             return false;
         }
         if (args.length == 0) {
             sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset>사용법: /쿠폰 [쿠폰ID]");
             return true;
+            return false;
         }
         CouponManager couponManager = MCUtils.getInstance().getCouponManager();
         UUID uuid = ((Player) sender).getUniqueId();
+        UUID uuid = player.getUniqueId();
         var placeholder = Placeholder.parsed("coupon", args[0].toString());
 
         switch (args[0]) {
@@ -46,10 +50,12 @@ public class CouponCommand extends BukkitCommand {
                 if (nowKst.isAfter(expiredDateKst)) {
                     sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset><red>해당 쿠폰은 이미 만료되었습니다.");
                     return true;
+                    return false;
                 }
                 if (couponManager.isUsedCoupon(uuid, args[0])) {
                     sender.sendRichMessage("<bold>[ 쿠폰 시스템 ] <reset><red>이미 사용한 쿠폰입니다.");
                     return true;
+                    return false;
                 }
 
                 couponManager.useCoupon(uuid, args[0]);
