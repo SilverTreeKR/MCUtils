@@ -56,7 +56,6 @@ public class UseCustomItemEventListener implements Listener {
         }
     }
 
-    // ---------- 우클릭 사용 (2단계 언박싱) ----------
     @EventHandler
     public void onPlayerUseCustomItem(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) return;
@@ -98,6 +97,10 @@ public class UseCustomItemEventListener implements Listener {
             contents = CustomItemBuilder.createPatronEtcItem();
         } else if (isBoxOf(itemName, CustomItemBuilder.createAyaPresentBox())) {
             contents = CustomItemBuilder.createAyaItem();
+        } else if (isBoxOf(itemName, CustomItemBuilder.createJongSickPresentBox())) {
+            contents = CustomItemBuilder.createJongSickItem();
+        } else if (isBoxOf(itemName, CustomItemBuilder.createMuzziPresentBox())) {
+            contents = CustomItemBuilder.createMuzziItem();
         }
 
         if (contents == null || contents.isEmpty()) return;

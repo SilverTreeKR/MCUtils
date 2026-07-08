@@ -423,4 +423,150 @@ public class CustomItemBuilder {
 
         return resultList;
     }
+
+    // 종식님 전용 선물 상자
+    public static ItemStack createJongSickPresentBox() {
+        ItemStack presentBox = manager.getHead("49158");
+        if (presentBox == null || presentBox.isEmpty()) {
+            plugin.getSLF4JLogger().warn("종식님 전용 선물 상자 머리를 불러오지 못했습니다 ! 기본 아이템으로 대체합니다.");
+            return new ItemStack(Material.PLAYER_HEAD);
+        }
+
+        ItemMeta itemMeta = presentBox.getItemMeta();
+        List<Component> itemLore = new ArrayList<>();
+
+        itemMeta.customName(MiniMessage.miniMessage().deserialize(
+                "<gradient:#A8FF78:#F7FF00:#A8FF78>종식님 전용 선물 상자</gradient>"
+        ).decoration(TextDecoration.ITALIC, false));
+        itemLore.add(MiniMessage.miniMessage().deserialize(
+                "<white>지하 세계에서 거주하는 종식님을 위해 운영진이 고심하여 고른 장식 블럭 8종이 들어있다."
+        ).decoration(TextDecoration.ITALIC, false));
+        itemLore.add(MiniMessage.miniMessage().deserialize(
+                "<white>▶ 아이템 갯수 : 8개"
+        ).decoration(TextDecoration.ITALIC, false));
+        itemLore.add(MiniMessage.miniMessage().deserialize(
+                ""
+        ).decoration(TextDecoration.ITALIC, false));
+        itemLore.add(MiniMessage.miniMessage().deserialize(
+                "<bold><aqua>▶ 우클릭하여 사용"
+        ).decoration(TextDecoration.ITALIC, false));
+
+        itemMeta.lore(itemLore);
+
+        presentBox.setItemMeta(itemMeta);
+        presentBox.setAmount(1);
+
+        return presentBox;
+    }
+
+    // 종식님 장식 블럭 8종
+    public static List<ItemStack> createJongSickItem() {
+        record HeadInfo(String id, String name) {}
+
+        List<HeadInfo> headDataList = List.of(
+                new HeadInfo("116472", "괴물A"),
+                new HeadInfo("3013", "괴물B"),
+                new HeadInfo("1439", "썩은 히로빈"),
+                new HeadInfo("111706", "망가진 히로빈"),
+                new HeadInfo("26678", "참수된 스티브"),
+                new HeadInfo("97511", "죽은 트롤페이스"),
+                new HeadInfo("90680", "감염된 스티브"),
+                new HeadInfo("98283", "괴물C")
+        );
+
+        List<ItemStack> resultList = new ArrayList<>();
+        var mm = MiniMessage.miniMessage();
+
+        for (HeadInfo data : headDataList) {
+            ItemStack head = manager.getHead(data.id());
+
+            if (head == null || head.isEmpty()) {
+                continue;
+            }
+
+            ItemMeta meta = head.getItemMeta();
+            if (meta != null) {
+                meta.customName(mm.deserialize("【 장식 블럭 】 " + data.name()).decoration(TextDecoration.ITALIC, false));
+                head.setItemMeta(meta);
+            }
+
+            head.setAmount(1);
+            resultList.add(head);
+        }
+
+        return resultList;
+    }
+
+    // 무지님 전용 선물 상자
+    public static ItemStack createMuzziPresentBox() {
+        ItemStack presentBox = manager.getHead("49158");
+        if (presentBox == null || presentBox.isEmpty()) {
+            plugin.getSLF4JLogger().warn("무지님 전용 선물 상자 머리를 불러오지 못했습니다 ! 기본 아이템으로 대체합니다.");
+            return new ItemStack(Material.PLAYER_HEAD);
+        }
+
+        ItemMeta itemMeta = presentBox.getItemMeta();
+        List<Component> itemLore = new ArrayList<>();
+
+        itemMeta.customName(MiniMessage.miniMessage().deserialize(
+                "<gradient:#FFF59D:#FFFDE7:#FFF59D>무지님 전용 선물 상자</gradient>"
+        ).decoration(TextDecoration.ITALIC, false));
+        itemLore.add(MiniMessage.miniMessage().deserialize(
+                "<white>과일을 좋아하는 무지님을 위해 운영진이 고심하여 고른 장식 블럭 8종이 들어있다."
+        ).decoration(TextDecoration.ITALIC, false));
+        itemLore.add(MiniMessage.miniMessage().deserialize(
+                "<white>▶ 아이템 갯수 : 8개"
+        ).decoration(TextDecoration.ITALIC, false));
+        itemLore.add(MiniMessage.miniMessage().deserialize(
+                ""
+        ).decoration(TextDecoration.ITALIC, false));
+        itemLore.add(MiniMessage.miniMessage().deserialize(
+                "<bold><aqua>▶ 우클릭하여 사용"
+        ).decoration(TextDecoration.ITALIC, false));
+
+        itemMeta.lore(itemLore);
+
+        presentBox.setItemMeta(itemMeta);
+        presentBox.setAmount(1);
+
+        return presentBox;
+    }
+
+    // 무지님 장식 블럭 8종
+    public static List<ItemStack> createMuzziItem() {
+        record HeadInfo(String id, String name) {}
+
+        List<HeadInfo> headDataList = List.of(
+                new HeadInfo("127298", "수박"),
+                new HeadInfo("4122", "딸기"),
+                new HeadInfo("95650", "복숭아"),
+                new HeadInfo("52706", "파인애플"),
+                new HeadInfo("71401", "오렌지"),
+                new HeadInfo("11", "포도"),
+                new HeadInfo("127296", "용과"),
+                new HeadInfo("9127294", "체리")
+        );
+
+        List<ItemStack> resultList = new ArrayList<>();
+        var mm = MiniMessage.miniMessage();
+
+        for (HeadInfo data : headDataList) {
+            ItemStack head = manager.getHead(data.id());
+
+            if (head == null || head.isEmpty()) {
+                continue;
+            }
+
+            ItemMeta meta = head.getItemMeta();
+            if (meta != null) {
+                meta.customName(mm.deserialize("【 장식 블럭 】 " + data.name()).decoration(TextDecoration.ITALIC, false));
+                head.setItemMeta(meta);
+            }
+
+            head.setAmount(1);
+            resultList.add(head);
+        }
+
+        return resultList;
+    }
 }
