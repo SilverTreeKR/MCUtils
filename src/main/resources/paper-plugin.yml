@@ -9,3 +9,7 @@ dependencies:
       load: BEFORE
       required: true
       join-classpath: true
+    MCPrefixAchievement:
+      load: BEFORE
+      required: true
+      join-classpath: true
