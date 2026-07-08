@@ -1,5 +1,7 @@
 package com.github.silvertreekr.mcutils.commands;
 
+import com.github.silvertreekr.mcprefixachievement.model.PrefixName;
+import com.github.silvertreekr.mcprefixachievement.util.PrefixGranter;
 import com.github.silvertreekr.mcutils.MCUtils;
 import com.github.silvertreekr.mcutils.dao.CouponManager;
 import com.github.silvertreekr.mcutils.utils.CustomItemBuilder;
@@ -67,7 +69,7 @@ public class CouponCommand extends BukkitCommand {
             }
             // 아야님 전용 쿠폰 코드
             case "7H4NK54Y4" -> {
-                if (uuid.toString().equals("66123349-3d00-4b75-a72a-836f1a6acf20")) {
+                if (!uuid.toString().equals("66123349-3d00-4b75-a72a-836f1a6acf20")) {
                     sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>오직 아야님만 입력할 수 있는 쿠폰입니다.");
                     player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                     return false;
@@ -77,7 +79,6 @@ public class CouponCommand extends BukkitCommand {
                     player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                     return false;
                 }
-
                 sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
                 couponManager.useCoupon(uuid, args[0]);
                 patronDefaultReward(player);
@@ -87,7 +88,7 @@ public class CouponCommand extends BukkitCommand {
             }
             // 종식님 전용 쿠폰 코드
             case "74HNKSJ0NG51K" -> {
-                if (uuid.toString().equals("e078f0f4-8319-4ad0-8fd1-e50223218251")) {
+                if (!uuid.toString().equals("e078f0f4-8319-4ad0-8fd1-e50223218251")) {
                     sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>오직 종식님만 입력할 수 있는 쿠폰입니다.");
                     player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                     return false;
@@ -107,7 +108,7 @@ public class CouponCommand extends BukkitCommand {
             }
             // 무지님 전용 쿠폰 코드
             case "7H4NK5MUZZ1" -> {
-                if (uuid.toString().equals("d213a3a4-45b6-416e-af4e-15f319c11a7f")) {
+                if (!uuid.toString().equals("d213a3a4-45b6-416e-af4e-15f319c11a7f")) {
                     sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>오직 무지님만 입력할 수 있는 쿠폰입니다.");
                     player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
                     return false;
@@ -153,7 +154,7 @@ public class CouponCommand extends BukkitCommand {
         );
     }
     private void patronDefaultReward(Player player) {
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/칭호 지급 " + player.getName() + " 13");
+        PrefixGranter.grantPrefix(player, PrefixName.PATRON);
         player.give(CustomItemBuilder.createPatronPresentBox());
         player.sendRichMessage("<bold>[ 쿠폰 ] <reset><aqua>후원해주셔서 감사합니다.");
         player.sendRichMessage("<bold>[ 쿠폰 ] <reset><yellow>아이템 상자를 사용하실 때 꼭 인벤토리를 비우신 후에 사용해주세요 !");
