@@ -114,7 +114,7 @@ public class UseCustomItemEventListener implements Listener {
 
         item.setAmount(item.getAmount() - 1);
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.2f);
-        player.sendRichMessage("<bold>[ 아이템 ] <reset><green>성공적으로 아이템이 지급되었습니다.");
+        player.sendRichMessage("<bold>【 아이템 】 <reset><green>성공적으로 아이템이 지급되었습니다.");
     }
 
     private boolean isBoxOf(String itemName, ItemStack reference) {
