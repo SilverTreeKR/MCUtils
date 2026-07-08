@@ -67,11 +67,11 @@ public class CouponCommand extends BukkitCommand {
             }
             // 아야님 전용 쿠폰 코드
             case "7H4NK54Y4" -> {
-//                if (uuid.toString() != "66123349-3d00-4b75-a72a-836f1a6acf20") {
-//                    sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>오직 아야님만 입력할 수 있는 쿠폰입니다.");
-//                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
-//                    return false;
-//                }
+                if (uuid.toString() != "66123349-3d00-4b75-a72a-836f1a6acf20") {
+                    sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>오직 아야님만 입력할 수 있는 쿠폰입니다.");
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
+                    return false;
+                }
                 if (couponManager.isUsedCoupon(uuid, args[0])) {
                     sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>이미 사용한 쿠폰입니다.");
                     player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
@@ -82,6 +82,46 @@ public class CouponCommand extends BukkitCommand {
                 couponManager.useCoupon(uuid, args[0]);
                 patronDefaultReward(player);
                 player.give(CustomItemBuilder.createAyaPresentBox());
+
+                return true;
+            }
+            // 종식님 전용 쿠폰 코드
+            case "74HNKSJ0NG51K" -> {
+                if (uuid.toString() != "e078f0f4-8319-4ad0-8fd1-e50223218251") {
+                    sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>오직 종식님만 입력할 수 있는 쿠폰입니다.");
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
+                    return false;
+                }
+                if (couponManager.isUsedCoupon(uuid, args[0])) {
+                    sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>이미 사용한 쿠폰입니다.");
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
+                    return false;
+                }
+
+                sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
+                couponManager.useCoupon(uuid, args[0]);
+                patronDefaultReward(player);
+                player.give(CustomItemBuilder.createJongSickPresentBox());
+
+                return true;
+            }
+            // 무지님 전용 쿠폰 코드
+            case "7H4NK5MUZZ1" -> {
+                if (uuid.toString() != "d213a3a4-45b6-416e-af4e-15f319c11a7f") {
+                    sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>오직 무지님만 입력할 수 있는 쿠폰입니다.");
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
+                    return false;
+                }
+                if (couponManager.isUsedCoupon(uuid, args[0])) {
+                    sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><red>이미 사용한 쿠폰입니다.");
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
+                    return false;
+                }
+
+                sender.sendRichMessage("<bold>[ 쿠폰 ] <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
+                couponManager.useCoupon(uuid, args[0]);
+                patronDefaultReward(player);
+                player.give(CustomItemBuilder.createMuzziPresentBox());
 
                 return true;
             }
