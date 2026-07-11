@@ -569,4 +569,19 @@ public class CustomItemBuilder {
 
         return resultList;
     }
+
+    public static ItemStack createGim() {
+        ItemStack itemStack = new ItemStack(Material.DRIED_KELP);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.customName(MiniMessage.miniMessage().deserialize(
+                "<#B8860B><bold>【<gradient:#FFF9C4:#FFFFFF:#FFF9C4>보상</gradient>】</bold></#B8860B> <reset><light_purple>김"
+        ).decoration(TextDecoration.ITALIC, false));
+        itemMeta.lore(List.of(MiniMessage.miniMessage().deserialize(
+                "<yellow>이 세상에서 제일 맛있는 음식입니다."
+        ).decoration(TextDecoration.ITALIC, false)));
+        itemStack.setItemMeta(itemMeta);
+        itemStack.setAmount(64);
+
+        return itemStack;
+    }
 }

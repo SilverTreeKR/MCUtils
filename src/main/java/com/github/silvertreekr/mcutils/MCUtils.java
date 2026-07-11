@@ -1,9 +1,6 @@
 package com.github.silvertreekr.mcutils;
 
-import com.github.silvertreekr.mcutils.commands.CouponCommand;
-import com.github.silvertreekr.mcutils.commands.MaintenanceCommand;
-import com.github.silvertreekr.mcutils.commands.ShowInterestCommand;
-import com.github.silvertreekr.mcutils.commands.ShowcasePrideCommand;
+import com.github.silvertreekr.mcutils.commands.*;
 import com.github.silvertreekr.mcutils.dao.CouponDAO;
 import com.github.silvertreekr.mcutils.dao.CouponManager;
 import com.github.silvertreekr.mcutils.database.MysqlDatabase;
@@ -82,6 +79,7 @@ public final class MCUtils extends JavaPlugin implements Listener {
         new CouponCommand(this);
         new ShowcasePrideCommand(this);
         new ShowInterestCommand(this);
+        new GimCommand(this);
 
     }
 
