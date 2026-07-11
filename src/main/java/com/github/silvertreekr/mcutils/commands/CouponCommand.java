@@ -62,7 +62,7 @@ public class CouponCommand extends BukkitCommand {
 
                 couponManager.useCoupon(uuid, args[0]);
                 sender.sendRichMessage("<bold>【 쿠폰 】 <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
-                player.give(createStopDevelopReward());
+                player.give(CustomItemBuilder.createStopDevelopReward());
                 sender.sendRichMessage("<bold>【 쿠폰 】 <reset><aqua>기나긴 연장점검을 기다려주셔서 감사합니다.");
                 sender.sendRichMessage("<bold>【 쿠폰 】 <reset><aqua>즐거운 마인크래프트 되세요 !");
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
@@ -94,20 +94,6 @@ public class CouponCommand extends BukkitCommand {
                 return false;
             }
         }
-    }
-    private ItemStack createStopDevelopReward() {
-        ItemStack elytra = new ItemStack(Material.ELYTRA);
-        ItemMeta itemMeta = elytra.getItemMeta();
-        itemMeta.customName(MiniMessage.miniMessage().deserialize(
-                "<#B8860B><bold>【<gradient:#FFF9C4:#FFFFFF:#FFF9C4>보상</gradient>】</bold></#B8860B> <yellow>겉날개"
-        ).decoration(TextDecoration.ITALIC, false));
-        itemMeta.lore(List.of(MiniMessage.miniMessage().deserialize(
-                "<yellow>여러분들이 그토록 염원하던 겉낼개입니다."
-        ).decoration(TextDecoration.ITALIC, false)));
-        elytra.setItemMeta(itemMeta);
-        elytra.setAmount(1);
-
-        return elytra;
     }
     private void patronDefaultReward(Player player) {
         PrefixGranter.grantPrefix(player, PrefixName.PATRON);

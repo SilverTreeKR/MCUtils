@@ -584,4 +584,19 @@ public class CustomItemBuilder {
 
         return itemStack;
     }
+
+    public static ItemStack createStopDevelopReward() {
+        ItemStack elytra = new ItemStack(Material.ELYTRA);
+        ItemMeta itemMeta = elytra.getItemMeta();
+        itemMeta.customName(MiniMessage.miniMessage().deserialize(
+                "<#B8860B><bold>【<gradient:#FFF9C4:#FFFFFF:#FFF9C4>보상</gradient>】</bold></#B8860B> <yellow>겉날개"
+        ).decoration(TextDecoration.ITALIC, false));
+        itemMeta.lore(List.of(MiniMessage.miniMessage().deserialize(
+                "<yellow>여러분들이 그토록 염원하던 겉날개입니다."
+        ).decoration(TextDecoration.ITALIC, false)));
+        elytra.setItemMeta(itemMeta);
+        elytra.setAmount(1);
+
+        return elytra;
+    }
 }
