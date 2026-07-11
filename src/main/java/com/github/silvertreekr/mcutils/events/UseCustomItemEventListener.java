@@ -50,7 +50,10 @@ public class UseCustomItemEventListener implements Listener {
                 || isBoxOf(itemName, CustomItemBuilder.createPatronOreBox())
                 || isBoxOf(itemName, CustomItemBuilder.createPatronBlockBox())
                 || isBoxOf(itemName, CustomItemBuilder.createPatronEtcBox())
-                || isBoxOf(itemName, CustomItemBuilder.createAyaPresentBox())) {
+                || isBoxOf(itemName, CustomItemBuilder.createAyaPresentBox())
+                || isBoxOf(itemName, CustomItemBuilder.createJongSickPresentBox())
+                || isBoxOf(itemName, CustomItemBuilder.createMuzziPresentBox())
+        ) {
             event.setCancelled(true);
         }
     }
