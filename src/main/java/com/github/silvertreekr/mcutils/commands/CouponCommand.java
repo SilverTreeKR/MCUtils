@@ -5,6 +5,8 @@ import com.github.silvertreekr.mcprefixachievement.util.PrefixGranter;
 import com.github.silvertreekr.mcutils.MCUtils;
 import com.github.silvertreekr.mcutils.dao.CouponManager;
 import com.github.silvertreekr.mcutils.utils.CustomItemBuilder;
+import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -62,6 +64,30 @@ public class CouponCommand extends BukkitCommand {
                 sender.sendRichMessage("<bold>【 쿠폰 】 <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
                 player.give(createReallyOpenReward());
                 sender.sendRichMessage("<bold>【 쿠폰 】 <reset><aqua>오픈까지 기다려주셔서 감사합니다.");
+                sender.sendRichMessage("<bold>【 쿠폰 】 <reset><aqua>즐거운 마인크래프트 되세요 !");
+                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+                return true;
+            }
+            case "570PD3V3L0P" -> {
+                ZoneId kstZone = ZoneId.of("Asia/Seoul");
+                ZonedDateTime nowKst = ZonedDateTime.now(kstZone);
+                ZonedDateTime expiredDateKst = ZonedDateTime.of(2026, 7, 14, 0, 0, 0, 0, kstZone);
+
+                if (nowKst.isAfter(expiredDateKst)) {
+                    sender.sendRichMessage("<bold>【 쿠폰 】 <reset><red>해당 쿠폰은 이미 만료되었습니다.");
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
+                    return false;
+                }
+                if (couponManager.isUsedCoupon(uuid, args[0])) {
+                    sender.sendRichMessage("<bold>【 쿠폰 】 <reset><red>이미 사용한 쿠폰입니다.");
+                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
+                    return false;
+                }
+
+                couponManager.useCoupon(uuid, args[0]);
+                sender.sendRichMessage("<bold>【 쿠폰 】 <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
+                player.give(createStopDevelopReward());
+                sender.sendRichMessage("<bold>【 쿠폰 】 <reset><aqua>기나긴 연장점검을 기다려주셔서 감사합니다.");
                 sender.sendRichMessage("<bold>【 쿠폰 】 <reset><aqua>즐거운 마인크래프트 되세요 !");
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
                 return true;
@@ -151,6 +177,20 @@ public class CouponCommand extends BukkitCommand {
                 ironPickaxe,
                 ironAxe
         );
+    }
+    private ItemStack createStopDevelopReward() {
+        ItemStack elytra = new ItemStack(Material.ELYTRA);
+        ItemMeta itemMeta = elytra.getItemMeta();
+        itemMeta.customName(MiniMessage.miniMessage().deserialize(
+                "<#B8860B><bold>【<gradient:#FFF9C4:#FFFFFF:#FFF9C4>보상</gradient>】</bold></#B8860B> <yellow>겉날개"
+        ).decoration(TextDecoration.ITALIC, false));
+        itemMeta.lore(List.of(MiniMessage.miniMessage().deserialize(
+                "<yellow>여러분들이 그토록 염원하던 겉낼개입니다."
+        ).decoration(TextDecoration.ITALIC, false)));
+        elytra.setItemMeta(itemMeta);
+        elytra.setAmount(1);
+
+        return elytra;
     }
     private void patronDefaultReward(Player player) {
         PrefixGranter.grantPrefix(player, PrefixName.PATRON);
