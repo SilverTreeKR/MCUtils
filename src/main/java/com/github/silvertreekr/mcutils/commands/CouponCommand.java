@@ -1,27 +1,20 @@
 package com.github.silvertreekr.mcutils.commands;
 
+import com.github.silvertreekr.customItems.models.CustomItem;
 import com.github.silvertreekr.mcprefixachievement.model.PrefixName;
 import com.github.silvertreekr.mcprefixachievement.util.PrefixGranter;
 import com.github.silvertreekr.mcutils.MCUtils;
 import com.github.silvertreekr.mcutils.dao.CouponManager;
-import com.github.silvertreekr.mcutils.utils.CustomItemBuilder;
-import net.kyori.adventure.text.format.TextDecoration;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.List;
 import java.util.UUID;
 
 public class CouponCommand extends BukkitCommand {
@@ -62,7 +55,7 @@ public class CouponCommand extends BukkitCommand {
 
                 couponManager.useCoupon(uuid, args[0]);
                 sender.sendRichMessage("<bold>【 쿠폰 】 <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
-                player.give(CustomItemBuilder.createStopDevelopReward());
+                player.give(CustomItem.STOP_DEVELOP_REWARD.create(1));
                 sender.sendRichMessage("<bold>【 쿠폰 】 <reset><aqua>기나긴 연장점검을 기다려주셔서 감사합니다.");
                 sender.sendRichMessage("<bold>【 쿠폰 】 <reset><aqua>즐거운 마인크래프트 되세요 !");
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
@@ -84,7 +77,7 @@ public class CouponCommand extends BukkitCommand {
                 sender.sendRichMessage("<bold>【 쿠폰 】 <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
                 couponManager.useCoupon(uuid, args[0]);
                 patronDefaultReward(player);
-                player.give(CustomItemBuilder.createMuzziPresentBox());
+                player.give(CustomItem.MUZZI_PRESENT_BOX.create(1));
 
                 return true;
             }
@@ -97,7 +90,7 @@ public class CouponCommand extends BukkitCommand {
     }
     private void patronDefaultReward(Player player) {
         PrefixGranter.grantPrefix(player, PrefixName.PATRON);
-        player.give(CustomItemBuilder.createPatronPresentBox());
+        player.give(CustomItem.PATRON_DEFAULT_PRESENT_BOX.create(1));
         player.sendRichMessage("<bold>【 쿠폰 】 <reset><aqua>후원해주셔서 감사합니다.");
         player.sendRichMessage("<bold>【 쿠폰 】 <reset><yellow>아이템 상자를 사용하실 때 꼭 인벤토리를 비우신 후에 사용해주세요 !");
         player.sendRichMessage("<bold>【 쿠폰 】 <reset><yellow>인벤토리 공간 부족으로 인한 아이템 유실은 책임지지 않습니다.");

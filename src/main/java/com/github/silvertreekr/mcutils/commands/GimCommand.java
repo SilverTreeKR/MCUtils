@@ -1,6 +1,6 @@
 package com.github.silvertreekr.mcutils.commands;
 
-import com.github.silvertreekr.mcutils.utils.CustomItemBuilder;
+import com.github.silvertreekr.customItems.models.CustomItem;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
@@ -58,7 +58,7 @@ public class GimCommand extends BukkitCommand {
         }
         lastExecutions.put(player.getUniqueId(), nowTime);
 
-        player.give(CustomItemBuilder.createGim());
+        player.give(CustomItem.GIM.create(64));
         player.sendRichMessage("<bold>【 칭호 】 <reset><aqua>김<reset>이 지급되었습니다 !");
 
         return true;

@@ -5,11 +5,11 @@ api-version: '1.21'
 authors: [ SilverTreeKR ]
 dependencies:
   server:
-    HeadDatabase:
+    MCPrefixAchievement:
       load: BEFORE
       required: true
       join-classpath: true
-    MCPrefixAchievement:
+    CustomItems:
       load: BEFORE
       required: true
       join-classpath: true

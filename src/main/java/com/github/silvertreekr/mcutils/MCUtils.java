@@ -5,7 +5,6 @@ import com.github.silvertreekr.mcutils.dao.CouponDAO;
 import com.github.silvertreekr.mcutils.dao.CouponManager;
 import com.github.silvertreekr.mcutils.database.MysqlDatabase;
 import com.github.silvertreekr.mcutils.events.*;
-import com.github.silvertreekr.mcutils.manager.HeadDatabaseManager;
 import com.github.silvertreekr.mcutils.manager.MaintenanceManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -20,7 +19,6 @@ public final class MCUtils extends JavaPlugin implements Listener {
     private static MaintenanceManager maintenanceManager = new MaintenanceManager();
     private MysqlDatabase mysqlDatabase;
     private CouponManager couponManager;
-    private HeadDatabaseManager headDatabaseManager;
 
     public static @NotNull MCUtils getInstance() {
         return instance;
@@ -34,15 +32,11 @@ public final class MCUtils extends JavaPlugin implements Listener {
     public @NotNull CouponManager getCouponManager() {
         return couponManager;
     }
-    public @NotNull HeadDatabaseManager getHDBManager() {
-        return headDatabaseManager;
-    }
 
     @Override
     public void onEnable() {
 
         instance = this;
-        headDatabaseManager = new HeadDatabaseManager(this);
         // Initialize Default Config
         saveDefaultConfig();
         reloadConfig();
@@ -72,7 +66,6 @@ public final class MCUtils extends JavaPlugin implements Listener {
         new PreventLoginWhileMaintenanceListner(this);
         new PlayerQuitEventListener(this);
         new PlayerJoinEventListener(this);
-        new UseCustomItemEventListener(this);
 
         // Initialize Command
         new MaintenanceCommand(this);
