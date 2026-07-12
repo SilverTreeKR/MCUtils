@@ -61,26 +61,6 @@ public class CouponCommand extends BukkitCommand {
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
                 return true;
             }
-            // 무지님 전용 쿠폰 코드
-            case "7H4NK5MUZZ1" -> {
-                if (!uuid.toString().equals("d213a3a4-45b6-416e-af4e-15f319c11a7f")) {
-                    sender.sendRichMessage("<bold>【 쿠폰 】 <reset><red>오직 무지님만 입력할 수 있는 쿠폰입니다.");
-                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
-                    return false;
-                }
-                if (couponManager.isUsedCoupon(uuid, args[0])) {
-                    sender.sendRichMessage("<bold>【 쿠폰 】 <reset><red>이미 사용한 쿠폰입니다.");
-                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
-                    return false;
-                }
-
-                sender.sendRichMessage("<bold>【 쿠폰 】 <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
-                couponManager.useCoupon(uuid, args[0]);
-                patronDefaultReward(player);
-                player.give(CustomItem.MUZZI_PRESENT_BOX.create(1));
-
-                return true;
-            }
             default -> {
                 sender.sendRichMessage("<bold>【 쿠폰 】 <reset><red>올바르지 않은 쿠폰 ID입니다.");
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
