@@ -37,10 +37,8 @@ public class CouponCommand extends BukkitCommand {
         var placeholder = Placeholder.parsed("coupon", args[0].toString());
 
         switch (args[0]) {
-            case "570PD3V3L0P" -> {
                 ZoneId kstZone = ZoneId.of("Asia/Seoul");
                 ZonedDateTime nowKst = ZonedDateTime.now(kstZone);
-                ZonedDateTime expiredDateKst = ZonedDateTime.of(2026, 7, 14, 0, 0, 0, 0, kstZone);
 
                 if (nowKst.isAfter(expiredDateKst)) {
                     sender.sendRichMessage("<bold>【 쿠폰 】 <reset><red>해당 쿠폰은 이미 만료되었습니다.");
@@ -55,9 +53,6 @@ public class CouponCommand extends BukkitCommand {
 
                 couponManager.useCoupon(uuid, args[0]);
                 sender.sendRichMessage("<bold>【 쿠폰 】 <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
-                player.give(CustomItem.STOP_DEVELOP_REWARD.create(1));
-                sender.sendRichMessage("<bold>【 쿠폰 】 <reset><aqua>기나긴 연장점검을 기다려주셔서 감사합니다.");
-                sender.sendRichMessage("<bold>【 쿠폰 】 <reset><aqua>즐거운 마인크래프트 되세요 !");
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
                 return true;
             }
