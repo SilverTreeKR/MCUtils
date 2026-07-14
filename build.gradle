@@ -20,8 +20,8 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
-    compileOnly('com.github.SilverTreeKR:CustomItems:1.1.0')
-    compileOnly("com.github.SilverTreeKR:MCPrefixAchievement:1.0.4")
+    compileOnly('com.github.SilverTreeKR:CustomItems:1.1.1')
+    compileOnly("com.github.SilverTreeKR:MCPrefixAchievement:1.1.0")
     // compileOnly files("libs/MCPrefixAchievement-1.0-SNAPSHOT.jar")
     // compileOnly files("libs/CustomItems-1.0.0.jar")
 }
