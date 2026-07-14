@@ -68,13 +68,14 @@ public class CouponCommand extends BukkitCommand {
             }
         }
     }
-    private void patronDefaultReward(Player player) {
-        PrefixGranter.grantPrefix(player, PrefixName.PATRON);
-        player.give(CustomItem.PATRON_DEFAULT_PRESENT_BOX.create(1));
-        player.sendRichMessage("<bold>【 쿠폰 】 <reset><aqua>후원해주셔서 감사합니다.");
-        player.sendRichMessage("<bold>【 쿠폰 】 <reset><yellow>아이템 상자를 사용하실 때 꼭 인벤토리를 비우신 후에 사용해주세요 !");
-        player.sendRichMessage("<bold>【 쿠폰 】 <reset><yellow>인벤토리 공간 부족으로 인한 아이템 유실은 책임지지 않습니다.");
-        player.sendRichMessage("<bold>【 쿠폰 】 <reset><yellow>아이템의 설명을 통해 지급될 아이템의 양을 확인하실 수 있습니다.");
-        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
-    }
+
+//    private void patronDefaultReward(Player player) {
+//        PrefixGranter.grantPrefix(player, PrefixName.PATRON);
+//        player.give(CustomItem.PATRON_DEFAULT_PRESENT_BOX.create(1));
+//        player.sendRichMessage("<bold>【 쿠폰 】 <reset><aqua>후원해주셔서 감사합니다.");
+//        player.sendRichMessage("<bold>【 쿠폰 】 <reset><yellow>아이템 상자를 사용하실 때 꼭 인벤토리를 비우신 후에 사용해주세요 !");
+//        player.sendRichMessage("<bold>【 쿠폰 】 <reset><yellow>인벤토리 공간 부족으로 인한 아이템 유실은 책임지지 않습니다.");
+//        player.sendRichMessage("<bold>【 쿠폰 】 <reset><yellow>아이템의 설명을 통해 지급될 아이템의 양을 확인하실 수 있습니다.");
+//        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+//    }
 }
