@@ -37,29 +37,29 @@ public class CouponCommand extends BukkitCommand {
         var placeholder = Placeholder.parsed("coupon", args[0].toString());
 
         switch (args[0]) {
-            case "0URM3M0R135N01" -> {
-                ZoneId kstZone = ZoneId.of("Asia/Seoul");
-                ZonedDateTime nowKst = ZonedDateTime.now(kstZone);
-                ZonedDateTime expiredDateKst = ZonedDateTime.of(2026, 7, 23, 0, 0, 0, 0, kstZone);
-
-                if (nowKst.isAfter(expiredDateKst)) {
-                    sender.sendRichMessage("<bold>【 쿠폰 】 <reset><red>해당 쿠폰은 이미 만료되었습니다.");
-                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
-                    return false;
-                }
-                if (couponManager.isUsedCoupon(uuid, args[0])) {
-                    sender.sendRichMessage("<bold>【 쿠폰 】 <reset><red>이미 사용한 쿠폰입니다.");
-                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
-                    return false;
-                }
-
-                couponManager.useCoupon(uuid, args[0]);
-                sender.sendRichMessage("<bold>【 쿠폰 】 <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
-                player.give(CustomItem.OUR_MEMORIES_NO1_REWARD.create(1));
-                PrefixGranter.grantPrefix(player, PrefixName.SUMMER_POOL);
-                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
-                return true;
-            }
+//            case "0URM3M0R135N01" -> {
+//                ZoneId kstZone = ZoneId.of("Asia/Seoul");
+//                ZonedDateTime nowKst = ZonedDateTime.now(kstZone);
+//                ZonedDateTime expiredDateKst = ZonedDateTime.of(2026, 7, 23, 0, 0, 0, 0, kstZone);
+//
+//                if (nowKst.isAfter(expiredDateKst)) {
+//                    sender.sendRichMessage("<bold>【 쿠폰 】 <reset><red>해당 쿠폰은 이미 만료되었습니다.");
+//                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
+//                    return false;
+//                }
+//                if (couponManager.isUsedCoupon(uuid, args[0])) {
+//                    sender.sendRichMessage("<bold>【 쿠폰 】 <reset><red>이미 사용한 쿠폰입니다.");
+//                    player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
+//                    return false;
+//                }
+//
+//                couponManager.useCoupon(uuid, args[0]);
+//                sender.sendRichMessage("<bold>【 쿠폰 】 <reset><green><coupon><reset> 쿠폰을 사용하셨습니다.",placeholder);
+//                player.give(CustomItem.OUR_MEMORIES_NO1_REWARD.create(1));
+//                PrefixGranter.grantPrefix(player, PrefixName.SUMMER_POOL);
+//                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+//                return true;
+//            }
             default -> {
                 sender.sendRichMessage("<bold>【 쿠폰 】 <reset><red>올바르지 않은 쿠폰 ID입니다.");
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 1.0f, 1.0f);
