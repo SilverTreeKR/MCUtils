@@ -72,6 +72,7 @@ public final class MCUtils extends JavaPlugin implements Listener {
         new CouponCommand(this);
         new ShowcasePrideCommand(this);
         new ShowInterestCommand(this);
+        new GaechuCommand(this);
         new GimCommand(this);
 
     }
