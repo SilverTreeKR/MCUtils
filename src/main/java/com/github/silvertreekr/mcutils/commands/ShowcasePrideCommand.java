@@ -26,7 +26,7 @@ public class ShowcasePrideCommand extends BukkitCommand {
         ItemStack item = player.getInventory().getItemInMainHand();
 
         if (item.isEmpty()) {
-            sender.sendRichMessage("<bold>[ 자랑 시스템 ] <reset><red>빈 손인 상태에서 아이템을 자랑할 수 없습니다 !");
+            sender.sendRichMessage("<bold>【 자랑 】 <reset><red>빈 손인 상태에서 아이템을 자랑할 수 없습니다 !");
             return false;
         }
 
@@ -37,12 +37,12 @@ public class ShowcasePrideCommand extends BukkitCommand {
         Component itemNameComponent = baseName.hoverEvent(item);
 
         Bukkit.broadcast(MiniMessage.miniMessage().deserialize(
-                "<bold>[ 자랑 시스템 ] <reset><green><player><reset>님께서 <item><reset>을/를 자랑하고 싶어합니다 !",
+                "<bold>【 자랑 】 <reset><green><player><reset>님께서 <item><reset>을/를 자랑하고 싶어합니다 !",
                 Placeholder.component("player", Component.text(player.getName())),
                 Placeholder.component("item", itemNameComponent)
         ));
         Bukkit.broadcast(MiniMessage.miniMessage().deserialize(
-                "<bold>[ 자랑 시스템 ] <reset><green><player><reset>님께 관심을 주세요 ! (/관심)",
+                "<bold>【 자랑 】 <reset><green><player><reset>님께 관심을 주세요 ! (/관심)",
                 Placeholder.component("player", Component.text(player.getName()))
         ));
         return true;
